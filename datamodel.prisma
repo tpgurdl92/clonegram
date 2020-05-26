@@ -16,6 +16,8 @@ type User {
   followers: [User!]! @relation(name: "FollowRelation")
   rooms:[Room!]! @relation(name:"RoomOfUser" onDelete:CASCADE)
   loginSecret:String
+  createdAt:DateTime! @createdAt
+  updatedAt:DateTime! @updatedAt
 }
 
 type Post {
@@ -34,6 +36,8 @@ type Like{
   id: ID! @id
   user:User! @relation(name:"LikeOfUser")
   post:Post! @relation(name:"LikeOfPost")
+  createdAt:DateTime! @createdAt
+  updatedAt:DateTime! @updatedAt
 }
 
 type Comment{
@@ -49,12 +53,16 @@ type File {
   id: ID! @id
   url:String!
   post:Post! @relation(name:"FilesOfPost")
+  createdAt:DateTime! @createdAt
+  updatedAt:DateTime! @updatedAt
 }
 
 type Room {
   id:ID! @id
   participants: [User!]!  @relation(name:"RoomOfUser")
   messages:[Message!]!  @relation(name:"MessageOfRoom" onDelete:CASCADE)
+  createdAt:DateTime! @createdAt
+  updatedAt:DateTime! @updatedAt
 }
 
 type Message{
@@ -63,4 +71,6 @@ type Message{
   from: User! @relation(name:"From")
   to:User! @relation(name:"To")
   room:Room! @relation(name:"MessageOfRoom")
+  createdAt:DateTime! @createdAt
+  updatedAt:DateTime! @updatedAt
 }
