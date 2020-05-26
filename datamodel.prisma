@@ -41,6 +41,8 @@ type Comment{
   text:String!
   user:User! @relation(name:"CommentOfUser")
   post:Post! @relation(name:"CommentOfPost")
+  createdAt:DateTime! @createdAt
+  updatedAt:DateTime! @updatedAt
 }
 
 type File {

@@ -1,3 +1,8 @@
+enum ACTIONS {
+    TERM
+    ID
+}
+
 type Query {
-    searchPost(term:String!):[Post!]!
+    searchPost(term:String!, action:ACTIONS!):[Post!]!
 }
