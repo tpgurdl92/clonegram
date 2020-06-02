@@ -15,6 +15,7 @@ export default{
                         }
                     }
                 }});
+                await prisma.createFollow({from:user.id,fromAvatar:user.avatar,fromUserName:user.username,to:id});
                 return true;
             }catch{
                 return false;

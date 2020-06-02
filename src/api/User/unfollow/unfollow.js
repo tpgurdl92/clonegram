@@ -14,6 +14,7 @@ export default{
                         }
                     }
                 }});
+                await prisma.deleteManyFollows({AND:[{from:user.id},{to:id}]});
                 return true;
             }catch(error){
                 console.log(error);

@@ -27,5 +27,9 @@ export const uploadMiddleware = upload.single("file");
 
 export const uploadController = (req, res) => {
     const {file:{location}} = req;
+    console.log(req.file);
+    //cors회피하기
+    res.set({'access-control-allow-origin':'*'});
+    
     res.json({location});
 }

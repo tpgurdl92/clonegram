@@ -1,0 +1,12 @@
+type Alarm {
+    id:String!
+    userid:String
+    user:User!
+    type:String!
+    post:Post
+    createdAt:String!
+}
+
+type Query{
+    seeAlarm:[Alarm]
+}

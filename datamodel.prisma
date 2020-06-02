@@ -74,3 +74,13 @@ type Message{
   createdAt:DateTime! @createdAt
   updatedAt:DateTime! @updatedAt
 }
+
+type Follow{
+  id: ID! @id
+  from: String!
+  fromAvatar:String!
+  fromUsername:String!
+  to: String!
+  createdAt:DateTime! @createdAt
+  updatedAt:DateTime! @updatedAt
+}
