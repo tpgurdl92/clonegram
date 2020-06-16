@@ -113,6 +113,18 @@ export const MESSAGE_FRAGMENT=`
         createdAt
         room{
             id
+            participantA{
+                id
+                username
+                avatar
+                itsMe 
+            }
+            participantB{
+                id
+                username
+                avatar
+                itsMe 
+            }
         }
     }
 `
