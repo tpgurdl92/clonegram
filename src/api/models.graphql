@@ -60,8 +60,17 @@ type File {
 
 type Room {
   id:ID! 
-  participants: [User!]!
-  messages:[Message!]!
+  participantA:User!
+  participantB:User!
+  admissionA:Boolean!
+  admissionB:Boolean!
+  showMessageDateA:String!
+  showMessageDateB:String!
+  lastCheckTimeA:String!
+  lastCheckTimeB:String!
+  messages:[Message]! 
+  createdAt:String! 
+  updatedAt:String!
 }
 
 type Message{
@@ -70,6 +79,8 @@ type Message{
   from: User! 
   to:User! 
   room:Room!
+  createdAt:String! 
+  updatedAt:String!
 }
 
 type UserProfile {

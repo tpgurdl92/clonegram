@@ -28,6 +28,9 @@ export default {
             }
         },
         itsMe:(parent,_,{request}) => {
+            if(request===undefined){
+                return parent.itsMe
+            }
             const { user } = request;
             const {id:parentId} = parent;
             return user.id === parentId;

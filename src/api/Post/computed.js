@@ -4,9 +4,7 @@ export default {
     Post:{
         isLiked: async(parent,_,{request})=>{
             const {user} = request;
-            console.log("parentpost");
             const {id:postid} = parent;
-            console.log(postid);
             return prisma.$exists.like({AND:[
                 {
                     user:{

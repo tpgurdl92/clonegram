@@ -14,7 +14,7 @@ type User {
   comment:[Comment!] @relation(name:"CommentOfUser" onDelete:CASCADE)
   following: [User!]! @relation(name: "FollowRelation")
   followers: [User!]! @relation(name: "FollowRelation")
-  rooms:[Room!]! @relation(name:"RoomOfUser" onDelete:CASCADE)
+  rooms:[Room!]! @relation(name:"RoomOfUser")
   loginSecret:String
   createdAt:DateTime! @createdAt
   updatedAt:DateTime! @updatedAt
@@ -59,8 +59,15 @@ type File {
 
 type Room {
   id:ID! @id
-  participants: [User!]!  @relation(name:"RoomOfUser")
-  messages:[Message!]!  @relation(name:"MessageOfRoom" onDelete:CASCADE)
+  participantA:User! @relation(name:"UserAOfRoom")
+  participantB:User! @relation(name:"UserBOfRoom")
+  admissionA:Boolean!
+  admissionB:Boolean!
+  showMessageDateA:DateTime!
+  showMessageDateB:DateTime!
+  lastCheckTimeA:DateTime!
+  lastCheckTimeB:DateTime!
+  messages:[Message]!  @relation(name:"MessageOfRoom" onDelete:CASCADE)
   createdAt:DateTime! @createdAt
   updatedAt:DateTime! @updatedAt
 }

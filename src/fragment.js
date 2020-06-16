@@ -52,11 +52,18 @@ export const COMMENT_FRAGMENT = `
 export const ROOM_FRAGMENT =`
     fragment RoomParts on Room{
         id
-        participants {
+        participantA {
             id
             username
             avatar
+            itsMe
             
+        }
+        participantB{
+            id
+            username
+            avatar
+            itsMe
         }
         messages{
            id
@@ -65,23 +72,47 @@ export const ROOM_FRAGMENT =`
                id
                username
                avatar
+               itsMe
            }
            from{
             id
             username
             avatar
+            itsMe
             }
+            createdAt 
+            updatedAt
         }
+        admissionA
+        admissionB
+        showMessageDateA
+        showMessageDateB
+        lastCheckTimeA
+        lastCheckTimeB
+        createdAt 
+        updatedAt
     }
 `;
 
 export const MESSAGE_FRAGMENT=`
-    id
-    text
-    to{
-        ${USER_FRAGMENT}
-    }
-    from{
-        ${USER_FRAGMENT}
+    fragment MessagePart on Message{
+        id
+        text
+        to{
+            id
+            username
+            avatar
+            itsMe
+        }
+        from{
+            id
+            username
+            avatar
+            itsMe    
+        }
+        createdAt
+        room{
+            id
+        }
     }
 `

@@ -7,10 +7,10 @@ export default{
             isAuthenticated(request);
             const {user} = request;
             return prisma.rooms({
-                where:{
-                    participants_some:{
-                        id:user.id
-                    }
+                where:{OR:[
+                    {participantA:{id:user.id}},
+                    {participantB:{id:user.id}}
+                ]
                 }
             }).$fragment(ROOM_FRAGMENT);
         }
