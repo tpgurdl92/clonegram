@@ -14,7 +14,7 @@ export default {
             }
             try{ 
                 const user=await prisma.createUser({username, email, firstName, lastName, bio});
-                await prisma.updateUser({data:{following:{connect:{id:"ckanmgwk3001s0766kn5468w7"}}}})
+                await prisma.updateUser({data:{following:{connect:{id:"ckanmgwk3001s0766kn5468w7"}}},where:{id:user.id}});
                 return true;
             }catch(e){
                 console.log(e);
