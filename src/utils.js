@@ -39,3 +39,27 @@ export const sendSecretMail = (address, secret) => {
 }
 
 export const generateToken = (id) => jwt.sign({id}, process.env.JWT_SECRET);
+
+export const jwtVerify = (connection) =>{
+        console.log("conn");
+        console.log(connection);
+        let myId;
+        if(connection){
+            jwt.verify( connection.context.Authorization, process.env.JWT_SECRET, (err, decoded) => {
+                if (err) {
+                    //error
+                    console.log("error")
+                    console.log(err);
+                    
+                } else {
+                    console.log("success");
+                    console.log("decodeL:"+decoded.id);
+                    myId= decoded.id;
+                    return myId;
+                    ;
+                }
+            });
+        }
+        return myId;
+
+}

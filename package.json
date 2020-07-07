@@ -14,6 +14,7 @@
     "aws-sdk": "^2.683.0",
     "copy": "^0.3.2",
     "dotenv": "^8.2.0",
+    "graphql-subscriptions": "^1.1.0",
     "graphql-tools": "^4.0.7",
     "graphql-yoga": "^1.18.3",
     "heroku": "^7.41.1",

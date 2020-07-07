@@ -1,11 +1,27 @@
 import { prisma } from "../../../../generated/prisma-client";
 import {MESSAGE_FRAGMENT} from "../../../fragment";
+import * as jwt from 'jsonwebtoken';
+
 export default {
     Subscription:{
         newMessage:{
-            subscribe:async(_,args,ctx)=>{
-                console.log("sub");
-                const {myId} = args;
+            subscribe:async(_,args,ctx,dd)=>{
+                console.log('sub');
+                //console.log(_);
+                const {myId} = ctx;
+                
+                console.log(ctx);
+                /*if(ctx.myId){
+                    console.log(ctx.connection.context);
+                    jwt.verify( ctx.connection.context.Authorization, process.env.JWT_SECRET, (err, decoded) => {
+                        if (err) {
+                            //error
+                            console.log(err);
+                        } else {
+                           myId=decoded.id;
+                        }
+                    });
+                }*/
                 return prisma.$subscribe.message({AND:[
                     {mutation_in:["CREATED"]},
                     {
@@ -20,9 +36,9 @@ export default {
                     
 
             },
-            resolve: (payload,args) =>{
+            resolve: (payload,args,ctx) =>{
                 console.log(payload);
-                const {myId} = args;
+                const {myId} = ctx;
                 if(payload.to.id===myId){
                     payload.to.itsMe =true;
                     payload.from.itsMe=false;
@@ -32,7 +48,16 @@ export default {
                 }else{
                     throw ('message classify error');
                 }
-                console.log(payload);
+                if(payload.room.participantA.id===myId){
+                    payload.room.participantA.itsMe=true;
+                    payload.room.participantB.itsMe=false;
+                }else if(payload.room.participantB.id===myId){
+                    payload.room.participantA.itsMe=false;
+                    payload.room.participantB.itsMe=true;
+                }else{
+                    throw ('room classify error');
+                }
+                
                 return payload
             },
         }
